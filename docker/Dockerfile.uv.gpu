@@ -43,7 +43,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN uv pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Install base dependencies first
-RUN uv pip install setuptools fastapi uvicorn[standard] python-dotenv python-multipart requests psutil pydub sse-starlette xformers
+RUN uv pip install setuptools fastapi uvicorn[standard] python-dotenv python-multipart requests psutil pydub sse-starlette
 
 # Install chatterbox-tts — with the breaking fix (pkuseg package exclusion) 
 RUN uv pip install git+https://github.com/travisvn/chatterbox-multilingual.git@exp
