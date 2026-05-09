@@ -4,6 +4,7 @@ TTS model initialization and management
 
 import os
 import asyncio
+import torch
 from enum import Enum
 from typing import Optional, Dict, Any
 from chatterbox.tts import ChatterboxTTS
