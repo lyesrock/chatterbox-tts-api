@@ -37,6 +37,17 @@ services:
       - MODEL_CACHE_DIR=${MODEL_CACHE_DIR:-/cache}
       - VOICE_LIBRARY_DIR=${VOICE_LIBRARY_DIR:-/voices}
       - HF_HOME=${HF_HOME:-/cache/huggingface}
+      - HF_HUB_DISABLE_TELEMETRY=${HF_HUB_DISABLE_TELEMETRY:-true}
+      - TORCH_HOME=${TORCH_HOME:-/cache/torch}
+
+      # Multilingual & CORS
+      - USE_MULTILINGUAL_MODEL=${USE_MULTILINGUAL_MODEL:-true}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+
+      # Memory Management
+      - MEMORY_CLEANUP_INTERVAL=${MEMORY_CLEANUP_INTERVAL:-5}
+      - CUDA_CACHE_CLEAR_INTERVAL=${CUDA_CACHE_CLEAR_INTERVAL:-3}
+      - ENABLE_MEMORY_MONITORING=${ENABLE_MEMORY_MONITORING:-true}
 
       # NVIDIA/CUDA settings
       - NVIDIA_VISIBLE_DEVICES=all
