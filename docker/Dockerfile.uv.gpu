@@ -43,7 +43,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN uv pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Install base dependencies first
-RUN uv pip install setuptools fastapi uvicorn[standard] python-dotenv python-multipart requests psutil pydub sse-starlette
+RUN uv pip install setuptools fastapi uvicorn[standard] python-dotenv python-multipart requests psutil pydub sse-starlette xformers
 
 # Install chatterbox-tts — with the breaking fix (pkuseg package exclusion) 
 RUN uv pip install git+https://github.com/travisvn/chatterbox-multilingual.git@exp
@@ -66,10 +66,10 @@ RUN mkdir -p /cache /voices /data/long_text_jobs
 # Set default environment variables (prefer CUDA)
 ENV PORT=4123
 ENV EXAGGERATION=0.5
-ENV CFG_WEIGHT=0.5
+ENV CFG_WEIGHT=0.3
 ENV TEMPERATURE=0.8
 ENV VOICE_SAMPLE_PATH=/app/voice-sample.mp3
-ENV MAX_CHUNK_LENGTH=280
+ENV MAX_CHUNK_LENGTH=400
 ENV MAX_TOTAL_LENGTH=3000
 ENV DEVICE=cuda
 ENV MODEL_CACHE_DIR=/cache

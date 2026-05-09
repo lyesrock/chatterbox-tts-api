@@ -36,6 +36,20 @@ async def initialize_model():
         _initialization_state = InitializationState.INITIALIZING.value
         _initialization_progress = "Validating configuration..."
         
+        # Configure SDPA (Scaled Dot Product Attention) backends for faster attention
+        import torch.nn.functional as F
+        try:
+            import xformers
+            torch.backends.cuda.enable_flash_sdp(True)
+            torch.backends.cuda.enable_mem_efficient_sdp(True)
+            torch.backends.cuda.enable_math_sdp(False)
+            print(f"✓ xFormers detected ({xformers.__version__}) - Flash Attention enabled")
+        except ImportError:
+            torch.backends.cuda.enable_flash_sdp(False)
+            torch.backends.cuda.enable_mem_efficient_sdp(True)
+            torch.backends.cuda.enable_math_sdp(False)
+            print("xFormers not available - using memory-efficient SDPA")
+        
         Config.validate()
         _device = detect_device()
         
