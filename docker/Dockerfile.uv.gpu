@@ -48,6 +48,11 @@ RUN uv pip install setuptools fastapi uvicorn[standard] python-dotenv python-mul
 # Install chatterbox-tts — with the breaking fix (pkuseg package exclusion) 
 RUN uv pip install git+https://github.com/travisvn/chatterbox-multilingual.git@exp
 
+# Patch resemble-perth NoneType bug: use DummyWatermarker instead of PerthImplicitWatermarker
+RUN sed -i 's/self\.watermarker = perth\.PerthImplicitWatermarker()/self.watermarker = perth.DummyWatermarker()/' \
+    /app/.venv/lib/python3.11/site-packages/chatterbox/mtl_tts.py
+# ---------------------------
+
 # Copy application code
 COPY app/ ./app/
 COPY main.py ./
