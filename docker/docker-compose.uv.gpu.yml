@@ -16,11 +16,11 @@ services:
 
       # TTS Model Settings
       - EXAGGERATION=${EXAGGERATION:-0.5}
-      - CFG_WEIGHT=${CFG_WEIGHT:-0.5}
+      - CFG_WEIGHT=${CFG_WEIGHT:-0.3}
       - TEMPERATURE=${TEMPERATURE:-0.8}
 
       # Text Processing
-      - MAX_CHUNK_LENGTH=${MAX_CHUNK_LENGTH:-280}
+      - MAX_CHUNK_LENGTH=${MAX_CHUNK_LENGTH:-400}
       - MAX_TOTAL_LENGTH=${MAX_TOTAL_LENGTH:-3000}
 
       # Long Text TTS Settings
@@ -74,7 +74,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: 2
               capabilities: [gpu]
 
     restart: unless-stopped
