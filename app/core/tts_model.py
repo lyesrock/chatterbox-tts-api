@@ -64,7 +64,6 @@ async def initialize_model():
         _initialization_progress = "Configuring device compatibility..."
         # Patch torch.load for CPU compatibility if needed
         if _device == 'cpu':
-            import torch
             original_load = torch.load
             original_load_file = None
             
